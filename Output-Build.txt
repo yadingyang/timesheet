@@ -1,0 +1,4 @@
+﻿1>------ Build started: Project: indentitytiti, Configuration: Debug Any CPU ------
+1>D:\webtemp\indentitytiti\indentitytiti\Models\AdminViewModels.cs(5,7,5,33): warning CS0105: The using directive for 'System.Collections.Generic' appeared previously in this namespace
+1>  indentitytiti -> D:\webtemp\indentitytiti\indentitytiti\bin\indentitytiti.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="indentitytiti.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <link rel="stylesheet" type="text/css" href="mystyle.css" />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+   
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+</head>
+<body>
+    <form runat="server">
+            
+              
+              <img ID="logo" src="/image/loginlogo.png"   /><br />
+<Div ID="WHS"> Working Hour System</Div>
+       <Div id="clear"></Div>
+                
+              
+       
+                
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+
+
+            </asp:ContentPlaceHolder>
+     
+
+        <Div ID="footer">
+            <footer>
+                <p>Address: 4020 148 Ave NE Suit E, Redmond, WA</p>
+            </footer>
+        </Div>
+
+    </form>
+</body>
+</html>
