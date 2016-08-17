@@ -138,11 +138,22 @@ namespace indentitytiti
 
 
 
-            String cmd = "insert into Timesheets(UserName, ClockOut, Date)  VALUES( " + "'" + username + "'" + "," + "'" + dt + "'" + "," + "'" + date + "')";
+            //String cmd = "insert into Timesheets(UserName, ClockOut, Date)  VALUES( " + "'" + username + "'" + "," + "'" + dt + "'" + "," + "'" + date + "')";
 
-            SqlCommand cmdinsert = new SqlCommand(cmd, conn);
+            //SqlCommand cmdinsert = new SqlCommand(cmd, conn);
 
-            int result = cmdinsert.ExecuteNonQuery();
+            //int result = cmdinsert.ExecuteNonQuery();
+
+            SqlCommand cmd = new SqlCommand("update Timesheets set ClockOut=@dt where Date=@date and UserName=@username ");
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("dt", dt);
+            cmd.Parameters.AddWithValue("date", date);
+            cmd.Parameters.AddWithValue("username", username);
+
+            var result = cmd.ExecuteNonQuery();
+
+
+
 
             Response.Redirect("stuff.aspx");
         }

@@ -33,10 +33,10 @@
                 <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT TOP 6 [UserName], [ClockIn], [ClockOut], [Date] FROM [Timesheets] WHERE (([Date] &lt;= @Date) AND ([UserName] = @UserName))">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [UserName], [ClockIn], [ClockOut], [Date] FROM [Timesheets] WHERE (([UserName] = @UserName) AND ([Date] = @Date))">
             <SelectParameters>
-                <asp:ControlParameter ControlID="Label3" Name="Date" PropertyName="Text" Type="String" />
                 <asp:ControlParameter ControlID="Label2" Name="UserName" PropertyName="Text" Type="String" />
+                <asp:ControlParameter ControlID="Label3" Name="Date" PropertyName="Text" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
         <asp:Label ID="Label3" runat="server" Text="Label" Visible="false"></asp:Label>
