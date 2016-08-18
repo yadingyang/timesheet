@@ -25,7 +25,7 @@ namespace indentitytiti
             DateTime current = DateTime.Now;
             string dat = current.ToString("MM/dd/yyyy");
 
-
+            
             string cd = "select count(*) from [Timesheets] where [Date]=@value1 and [Username]=@value2";
 
             SqlCommand cdsearch = new SqlCommand(cd, conn);

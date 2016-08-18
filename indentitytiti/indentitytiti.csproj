@@ -193,6 +193,10 @@
     <Content Include="role.aspx" />
     <Content Include="stuff.aspx" />
     <Content Include="Timesheets.aspx" />
+    <None Include="Properties\PublishProfiles\timesheet.pubxml" />
+    <None Include="Properties\PublishProfiles\Timesheets.pubxml" />
+    <None Include="Properties\PublishProfiles\timeyyd.pubxml" />
+    <None Include="Properties\PublishProfiles\yydtime.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="mylogin.aspx" />
     <Content Include="Scripts\bootstrap.js" />
