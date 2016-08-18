@@ -149,12 +149,18 @@ namespace indentitytiti
 
             DateTime now = DateTime.Now;
 
-            string date = now.ToString("MM/dd/yyyy");
+          string date = now.ToString("MM/dd/yyyy");
 
             String dt = now.ToString("HH:mm:ss");
-          
+
+        //   DateTime dt = DateTime.Now.ToLocalTime();
+
+          //  DateTime.Now.ToShortTimeString().
+
             
-                          
+
+
+
             String cmd = "insert into Timesheets(UserName, ClockIn, Date)  VALUES( " + "'" + username + "'" + ","  +"'"+dt +"'"+","+"'"+date+"')";
 
             SqlCommand cmdinsert = new SqlCommand(cmd, conn);
@@ -183,8 +189,9 @@ namespace indentitytiti
 
             string date = now.ToString("MM/dd/yyyy");
 
-            String dt = now.ToString("HH:mm:ss");
+          String dt = now.ToString("HH:mm:ss");
 
+        //    DateTime dt = DateTime.Now.ToLocalTime();
 
 
             //String cmd = "insert into Timesheets(UserName, ClockOut, Date)  VALUES( " + "'" + username + "'" + "," + "'" + dt + "'" + "," + "'" + date + "')";

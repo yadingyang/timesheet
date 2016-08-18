@@ -26,7 +26,7 @@ namespace indentitytiti
             public string UserName { get; set; }
             public string ClockIn { get; set; }
             public string ClockOut { get; set; }
-
+            public string Duration { get; set; }
         }
 
 
@@ -38,7 +38,6 @@ namespace indentitytiti
 
 
         }
-
         
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
@@ -69,9 +68,6 @@ namespace indentitytiti
 
             var username = System.Web.HttpContext.Current.User.Identity.GetUserName();
 
-            //          DateTime current = DateTime.Now;
-
-            //   string dat = current.ToString("MM/dd/yyyy");
             
             string cd = "select ClockIn ,ClockOut from [Timesheets] where [Date]=@value1 and [Username]=@value2";
 
@@ -94,10 +90,18 @@ namespace indentitytiti
 
             tmst.UserName = username;
 
+            DateTime ci = Convert.ToDateTime(tmst.ClockIn);
+            DateTime co = Convert.ToDateTime(tmst.ClockOut);
+
+
+            TimeSpan Du = co-ci;
+            tmst.Duration = Du.ToString();
+
             Timest.Add(tmst);
 
             return Timest;
         }
 
     }
+
   }
