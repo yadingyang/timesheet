@@ -21,44 +21,93 @@ namespace indentitytiti
         {
             SqlConnection conn = new SqlConnection(_connectionString);
             conn.Open();
+
             var username = System.Web.HttpContext.Current.User.Identity.GetUserName();
+
             DateTime current = DateTime.Now;
+
             string dat = current.ToString("MM/dd/yyyy");
 
-            
-            string cd = "select count(*) from [Timesheets] where [Date]=@value1 and [Username]=@value2";
+            string cd = "select ClockIn ,ClockOut from [Timesheets] where [Date]=@value1 and [Username]=@value2";
 
             SqlCommand cdsearch = new SqlCommand(cd, conn);
+
             cdsearch.Parameters.AddWithValue("@value1", dat);
             cdsearch.Parameters.AddWithValue("@value2", username);
 
+            SqlDataReader result = cdsearch.ExecuteReader();
 
-            object result = cdsearch.ExecuteScalar();
+            string cit;
+            string cot;
 
-            int count = Convert.ToInt32(result);
-
-            if (count ==1)
-            { ClockIn.Enabled = false;
-               ClockOut.Enabled = true;
-                Label1.Text = "You have clocked in today";
-            }
-
-            else if (count ==2)
+            if (result.Read())
             {
-                ClockIn.Enabled = false;
-                ClockOut.Enabled = false;
-                Label1.Text = "You have clocked in and out today";
-            }
+               
+                cit = result["ClockIn"].ToString();
+                cot = result["ClockOut"].ToString();
 
-            else if (count == 0)
-            {
-                ClockIn.Enabled = true                    ;
-                ClockOut.Enabled = false;
-                Label1.Text = "Please Login";
-            }
+                if (cit==null)
+                {       ClockIn.Enabled = true                    ;
+                     ClockOut.Enabled = false;
+                      Label1.Text = "Please Login";}
+
+                else if(cit!=null & cot==null | cit != null & cot == "")
+                { ClockIn.Enabled = false;
+                     ClockOut.Enabled = true;
+                    Label1.Text = "You have clocked in today";
+                }
+
+                else if (cit!=null & cot!="")
+                { ClockIn.Enabled = false;
+                        ClockOut.Enabled = false;
+                    Label1.Text = "You have clocked in and out today";
+                }
 
 
-            if (HttpContext.Current.User.IsInRole("stuff"))
+                }
+
+
+
+
+                //        string cd = "select count(*) from [Timesheets] where [Date]=@value1 and [Username]=@value2";
+
+                //SqlCommand cdsearch = new SqlCommand(cd, conn);
+                //cdsearch.Parameters.AddWithValue("@value1", dat);
+                //cdsearch.Parameters.AddWithValue("@value2", username);
+
+
+                //object result = cdsearch.ExecuteScalar();
+
+                //int count = Convert.ToInt32(result);
+
+                // if (count ==1)
+                // { ClockIn.Enabled = false;
+                //    ClockOut.Enabled = true;
+                //     Label1.Text = "You have clocked in today";
+                // }
+
+                // else if (count ==2)
+                // {
+                //     ClockIn.Enabled = false;
+                //     ClockOut.Enabled = false;
+                //     Label1.Text = "You have clocked in and out today";
+                // }
+
+                //if (count==null)
+                // {
+                //     ClockIn.Enabled = true                    ;
+                //     ClockOut.Enabled = false;
+                //     Label1.Text = "Please Login";
+                // }
+
+
+
+
+
+
+
+
+                if (HttpContext.Current.User.IsInRole("stuff"))
             {
 
             }
