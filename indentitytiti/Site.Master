@@ -23,12 +23,12 @@
 </head>
 <body>
     <form runat="server">
-           <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1">
+           <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" ForeColor="#666666">
     </asp:Menu>
     <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />  
               
               <img ID="logo" src="/image/loginlogo.png"   /><br />
-<Div ID="WHS"> Working Hour System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Lougout" />
+<Div ID="WHS"> Working Hour System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Button ID="Logout" runat="server" OnClick="Button1_Click" Text="Lougout" ForeColor="#666666" Visible="false" />
               <br />
    
               <br />

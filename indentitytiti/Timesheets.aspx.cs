@@ -90,12 +90,18 @@ namespace indentitytiti
 
             tmst.UserName = username;
 
-            DateTime ci = Convert.ToDateTime(tmst.ClockIn);
-            DateTime co = Convert.ToDateTime(tmst.ClockOut);
+            if (tmst.ClockIn != "" & tmst.ClockOut != "")
+            {
+                DateTime ci = Convert.ToDateTime(tmst.ClockIn);
+                DateTime co = Convert.ToDateTime(tmst.ClockOut);
 
 
-            TimeSpan Du = co-ci;
-            tmst.Duration = Du.ToString();
+                TimeSpan Du = co - ci;
+                tmst.Duration = Du.ToString();
+            }
+            else
+            { tmst.Duration = "0"; }
+
 
             Timest.Add(tmst);
 

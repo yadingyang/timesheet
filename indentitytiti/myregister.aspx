@@ -28,7 +28,7 @@
        </p>
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" ForeColor="#666666" />
         <br />
         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
      

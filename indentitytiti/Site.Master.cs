@@ -70,6 +70,12 @@ namespace indentitytiti
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (HttpContext.Current.User.IsInRole("stuff")| HttpContext.Current.User.IsInRole("admin")|HttpContext.Current.User.IsInRole("Leader"))
+            {
+                Logout.Visible = true;
+            }
+
+
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

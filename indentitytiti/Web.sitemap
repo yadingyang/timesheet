@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   
-  <siteMapNode url="mylogin.aspx" title="Site Map"  description="Login">
+  <siteMapNode url="mylogin.aspx" title="Site Map"  description="Login Page">
 
-    <siteMapNode url="stuff.aspx" title="Stuff Page"  description="Stuff Page" >
+    <siteMapNode url="stuff.aspx" title="Stuff Page"  description="Stuff Only" >
     
   
     </siteMapNode>
 
-    <siteMapNode url="leader.aspx" title="Leader Page"  description="Leader Page" >
+    <siteMapNode url="leader.aspx" title="Leader Page"  description="Leader Only" >
      
     </siteMapNode>
 
-    <siteMapNode url="admin.aspx" title="Admin Page"  description="Admin Page" >
-          <siteMapNode url="myregister.aspx" title="Add Users"  description="Add Users" />
-      <siteMapNode url="role.aspx" title="Add roles"  description="Add roles" />
+    <siteMapNode url="admin.aspx" title="Admin Page"  description="Admin Only" >
+          <siteMapNode url="myregister.aspx" title="Add Users"  description="Admin Only" />
+      <siteMapNode url="role.aspx" title="Add roles"  description="Admin Only" />
     </siteMapNode>
 
         <siteMapNode url="changepassword.aspx" title="Change Password"  description="Change Password" />

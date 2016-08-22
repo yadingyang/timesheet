@@ -17,7 +17,7 @@
         <asp:TextBox ID="TextBox2" TextMode="Password" runat="server"></asp:TextBox>
         </p>
     <p>       
-        <asp:Button ID="Login" runat="server" OnClick="Button1_Click" Text="Login" />
+        <asp:Button ID="Login" runat="server" OnClick="Button1_Click" Text="Login" ForeColor="#666666" />
         &nbsp;</p>
  </Div>
 
