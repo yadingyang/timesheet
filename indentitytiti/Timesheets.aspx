@@ -35,7 +35,7 @@
 <asp:BoundField HeaderText="ClockIn" DataField="ClockIn" ReadOnly="true" />
  <asp:BoundField HeaderText="ClockOut" DataField="ClockOut" ReadOnly="true" />
 <asp:BoundField HeaderText="Duration" DataField="Duration" ReadOnly="true" />
-
+<asp:BoundField HeaderText="Status" DataField="Status" ReadOnly="true" />
                     </Columns>
 
 

@@ -29,6 +29,7 @@ namespace indentitytiti
             public string ClockIn { get; set; }
             public string ClockOut { get; set; }
             public string Duration { get; set; }
+            public string Status { get; set; }
         }
 
 
@@ -70,7 +71,7 @@ namespace indentitytiti
             var username = System.Web.HttpContext.Current.User.Identity.GetUserName();
 
 
-            string cd = "select ClockIn ,ClockOut from [Timesheets] where [Date]=@value1 and [Username]=@value2";
+            string cd = "select ClockIn ,ClockOut, Status from [Timesheets] where [Date]=@value1 and [Username]=@value2";
 
             SqlCommand cdsearch = new SqlCommand(cd, conn);
 
@@ -95,6 +96,7 @@ namespace indentitytiti
 
                 tmst.ClockIn = result["ClockIn"].ToString();
                 tmst.ClockOut = result["ClockOut"].ToString();
+                tmst.Status= result["Status"].ToString();
             }
 
             
