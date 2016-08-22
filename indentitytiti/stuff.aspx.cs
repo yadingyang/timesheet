@@ -181,9 +181,7 @@ namespace indentitytiti
             conn.Open();
 
             var username = System.Web.HttpContext.Current.User.Identity.GetUserName();
-
-         
-
+            
 
             DateTime now = DateTime.Now;
 
@@ -200,11 +198,12 @@ namespace indentitytiti
 
             //int result = cmdinsert.ExecuteNonQuery();
 
-            SqlCommand cmd = new SqlCommand("update Timesheets set ClockOut=@dt where Date=@date and UserName=@username ");
+            SqlCommand cmd = new SqlCommand("update Timesheets set ClockOut=@dt, Status =@pending where Date=@date and UserName=@username ");
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("dt", dt);
             cmd.Parameters.AddWithValue("date", date);
             cmd.Parameters.AddWithValue("username", username);
+            cmd.Parameters.AddWithValue("pending", "Pending");
 
             var result = cmd.ExecuteNonQuery();
 
