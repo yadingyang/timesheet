@@ -2,33 +2,19 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-
     <div id="stuffpage">
     <p>
         
             <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   
-    
-    
-        
         
         <asp:Button ID="Button1" runat="server" Text="Logout" OnClick="Button1_Click" />
    
-    
-    
-        
-        
         <p>
         
             &nbsp;&nbsp;&nbsp;&nbsp;
-   
-    
-    
-        
-        
+           
         <h3>
-       
        
             <asp:Label ID="Label1" runat="server" Text="Please Login"></asp:Label>
         
