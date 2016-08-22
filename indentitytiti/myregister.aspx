@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="myregister.aspx.cs" Inherits="indentitytiti.myregister" %>
+﻿<%@ Page Title="Add User Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="myregister.aspx.cs" Inherits="indentitytiti.myregister" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div id="register">

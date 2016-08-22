@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="role.aspx.cs" Inherits="indentitytiti.role" %>
+﻿<%@ Page Title="Add Roles Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="role.aspx.cs" Inherits="indentitytiti.role" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 

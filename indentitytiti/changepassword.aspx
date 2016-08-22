@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"MasterPageFile="~/Site.Master"  AutoEventWireup="true" CodeBehind="changepassword.aspx.cs" Inherits="indentitytiti.changepassword" %>
+﻿<%@ Page Title="Change Password"  Language="C#"MasterPageFile="~/Site.Master"  AutoEventWireup="true" CodeBehind="changepassword.aspx.cs" Inherits="indentitytiti.changepassword" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div id="CPW">

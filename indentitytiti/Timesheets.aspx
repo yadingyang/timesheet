@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Timesheets.aspx.cs" Inherits="indentitytiti.Timesheets" %>
+﻿<%@ Page Title="Timesheet Page"  Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Timesheets.aspx.cs" Inherits="indentitytiti.Timesheets" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
