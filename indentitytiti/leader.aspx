@@ -19,6 +19,9 @@
             &#39;s Timesheet<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [UserName] FROM [AspNetUsers]"></asp:SqlDataSource>
 
         
+            <asp:HyperLink ID="HyperLink1" runat="server">Submit</asp:HyperLink>
+
+        
             &nbsp;</p>
 
         

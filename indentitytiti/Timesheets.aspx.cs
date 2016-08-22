@@ -18,6 +18,8 @@ namespace indentitytiti
     {
         static string dat;
 
+        static string checkuser;
+
         private static string _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
 
 
@@ -33,9 +35,8 @@ namespace indentitytiti
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            Label2.Text = Request.QueryString["user"];
-
-
+           checkuser= Request.QueryString["user"];
+              
 
         }
         
@@ -68,16 +69,24 @@ namespace indentitytiti
 
             var username = System.Web.HttpContext.Current.User.Identity.GetUserName();
 
-            
+
             string cd = "select ClockIn ,ClockOut from [Timesheets] where [Date]=@value1 and [Username]=@value2";
 
             SqlCommand cdsearch = new SqlCommand(cd, conn);
 
             cdsearch.Parameters.AddWithValue("@value1", dat);
 
-            cdsearch.Parameters.AddWithValue("@value2", username);
 
-            SqlDataReader result = cdsearch.ExecuteReader();
+            if (HttpContext.Current.User.IsInRole("Leader"))
+            {
+                cdsearch.Parameters.AddWithValue("@value2", checkuser);
+        }
+            else
+            {
+                cdsearch.Parameters.AddWithValue("@value2", username);
+            }
+
+    SqlDataReader result = cdsearch.ExecuteReader();
 
             Timesheet tmst = new Timesheet();
 
@@ -88,7 +97,19 @@ namespace indentitytiti
                 tmst.ClockOut = result["ClockOut"].ToString();
             }
 
-            tmst.UserName = username;
+            
+
+            if (HttpContext.Current.User.IsInRole("Leader"))
+            {
+                tmst.UserName = checkuser;
+            }
+            else
+            {
+                tmst.UserName = username;
+            }
+
+
+            
 
             if (tmst.ClockIn != "" & tmst.ClockOut != "")
             {

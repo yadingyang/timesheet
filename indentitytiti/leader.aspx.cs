@@ -25,6 +25,9 @@ namespace indentitytiti
             {
                 Response.Redirect("mylogin.aspx");
             }
+
+            
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -38,6 +41,17 @@ namespace indentitytiti
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+ string url = "timesheets.aspx?user=" + DropDownList1.Text;
+
+
+
+
+
+
+
+
+
 
         }
 

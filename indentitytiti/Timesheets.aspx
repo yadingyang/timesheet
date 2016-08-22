@@ -8,6 +8,7 @@
         <p>
             &nbsp;<h3>
                 <asp:Label ID="Label1" runat="server" Text="Please Choose the Date You Want to Check"></asp:Label>
+                &nbsp;
             </h3>
 
 
@@ -51,8 +52,6 @@
     
   
             </div>
-
-            <asp:Label ID="Label2" runat="server" Text="userid" Visible="false"></asp:Label>
 
             &nbsp;
     
