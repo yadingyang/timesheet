@@ -26,7 +26,8 @@
             
               
               <img ID="logo" src="/image/loginlogo.png"   /><br />
-<Div ID="WHS"> Working Hour System</Div>
+<Div ID="WHS"> Working Hour System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Lougout" />
+              </Div>
        <Div id="clear"></Div>
                 
               

@@ -5,7 +5,6 @@
     <div id="leader">
     <p>   
      <h3>   <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button2" runat="server" Text="Logout" OnClick="Button2_Click" />
         </h3>
      <a  id="changepass" "   href="changepassword.aspx">Change Password</a>
 

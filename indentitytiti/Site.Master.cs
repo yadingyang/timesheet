@@ -76,6 +76,14 @@ namespace indentitytiti
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+            authenticationManager.SignOut();
+
+            Response.Redirect("mylogin.aspx");
+        }
     }
 
 }

@@ -7,8 +7,6 @@
         
             <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        
-        <asp:Button ID="Button1" runat="server" Text="Logout" OnClick="Button1_Click" />
    
         <p>
         
