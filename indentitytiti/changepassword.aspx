@@ -5,7 +5,7 @@
     
   
         <p>
-          <h2>Change Password</h2>
+            &nbsp;<h2>Change Password</h2>
             <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
         </p>
         <p>

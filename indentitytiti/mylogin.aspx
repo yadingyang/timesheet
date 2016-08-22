@@ -3,9 +3,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
- <Div id="loginbox">
+    <Div id="loginbox">
    
     <h3   >Please Login</h3>
+    <p   >
+        &nbsp;</p>
     <h3   >
         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </h3>

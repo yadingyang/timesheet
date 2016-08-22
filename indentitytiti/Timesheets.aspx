@@ -6,7 +6,7 @@
 
     <div id="TMS">
         <p>
-            <h3>
+            &nbsp;<h3>
                 <asp:Label ID="Label1" runat="server" Text="Please Choose the Date You Want to Check"></asp:Label>
             </h3>
 
