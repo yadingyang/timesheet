@@ -172,6 +172,7 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="admin.aspx" />
     <Content Include="allsheets.aspx" />
+    <Content Include="Approve.aspx" />
     <Content Include="App_Data\aspnet-indentitytiti-20160720082920.mdf" />
     <Content Include="App_Data\aspnet-indentitytiti-20160720082920_log.ldf">
       <DependentUpon>aspnet-indentitytiti-20160720082920.mdf</DependentUpon>
@@ -368,6 +369,13 @@
     </Compile>
     <Compile Include="allsheets.aspx.designer.cs">
       <DependentUpon>allsheets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Approve.aspx.cs">
+      <DependentUpon>Approve.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Approve.aspx.designer.cs">
+      <DependentUpon>Approve.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

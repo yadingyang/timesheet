@@ -32,7 +32,7 @@ namespace indentitytiti
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-  string url = "timesheets.aspx?user=" + DropDownList1.Text;
+  string url = "Approve.aspx?user=" + DropDownList1.Text;
 
             Response.Redirect(url);
 
@@ -42,7 +42,7 @@ namespace indentitytiti
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
- string url = "timesheets.aspx?user=" + DropDownList1.Text;
+ string url = "Approve.aspx?user=" + DropDownList1.Text;
 
 
 
