@@ -24,10 +24,13 @@
                     <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
                     <WeekendDayStyle BackColor="#FFFFCC" />
                 </asp:Calendar>
+                
+                
+                
                 <br />
 
 
-                <asp:GridView ID="Timesheetview" runat="server" AutoGenerateColumns="False" OnRawCommand="RowCommand" >
+                <asp:GridView ID="Timesheetview" runat="server" AutoGenerateColumns="False" OnRawCommand="RowCommand"  >
 
                     <Columns>
                         <asp:BoundField HeaderText="Username" DataField="UserName" ReadOnly="true" />
@@ -37,15 +40,30 @@
                         <asp:BoundField HeaderText="Duration" DataField="Duration" ReadOnly="true" />
                         <asp:BoundField HeaderText="Status" DataField="Status" ReadOnly="true" />
                         
+                         <asp:TemplateField HeaderText="Comment">
+                            <ItemTemplate>
+                           <asp:TextBox ID="rightdt" runat="server"></asp:TextBox>         
+                            </ItemTemplate>
+                             </asp:TemplateField>
+ 
+
+                        <asp:TemplateField HeaderText="Submit">
+                            <ItemTemplate>
+                                <asp:Button ID="modify" runat="Server" CausesValidation="false"
+                                    Text="Submit"
+                                    Visible="true"
+                                    CommandName="modify"
+                                    CommandArgument='<%#((GridViewRow) Container).RowIndex %>'/>
+                                 </ItemTemplate>
+                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Approve">
                             <ItemTemplate>
-
                                 <asp:Button ID="Approve" runat="Server" CausesValidation="false"
                                     Text="Approve"
                                     Visible="true"
-                                    CommandArgument='<%#((GridViewRow) Container).RowIndex %>'/>
-                                 
+                                    CommandName="approve"
+                                    CommandArgument='<%#((GridViewRow) Container).RowIndex %>'/>   
                             </ItemTemplate>
                         </asp:TemplateField>
 

@@ -46,38 +46,71 @@ List<Timesheet> Timest = new List<Timesheet>();
 
         private void RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            
-            string username, date;
-           
+            if (e.CommandName == "approve")
+            {
+                string username, date;
+
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = Timesheetview.Rows[index];
                 username = Convert.ToString(row.Cells[0].Text);
                 date = Convert.ToString(row.Cells[1].Text);
 
+              
 
-            SqlConnection conn = new SqlConnection(_connectionString);
+                SqlConnection conn = new SqlConnection(_connectionString);
 
-            conn.Open();
+                conn.Open();
+
+
+                SqlCommand cmd = new SqlCommand("update Timesheets set Status =@approve where Date=@date and UserName=@username ");
+                cmd.Connection = conn;
+
+                cmd.Parameters.AddWithValue("date", date);
+                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("approve", "Approved");
+
+                var result = cmd.ExecuteNonQuery();
+
+                Timest = Approve.GetClocktime();
+                Timesheetview.DataSource = Timest;
+                Timesheetview.DataBind();
+
+            }
+
+            else if (e.CommandName == "modify")
+            {
+                string username, date, text;
+
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = Timesheetview.Rows[index];
+                username = Convert.ToString(row.Cells[0].Text);
+                date = Convert.ToString(row.Cells[1].Text);
+
+                var rightdt = Timesheetview.Rows[index].FindControl("rightdt") as TextBox;
+
+                text = rightdt.Text;
+
+                SqlConnection conn = new SqlConnection(_connectionString);
+
+                conn.Open();
+
+
+                SqlCommand cmd = new SqlCommand("update Timesheets set Status =@text where Date=@date and UserName=@username ");
+                cmd.Connection = conn;
+
+                cmd.Parameters.AddWithValue("date", date);
+                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("text", text);
+
+                var result = cmd.ExecuteNonQuery();
+
+                Timest = Approve.GetClocktime();
+                Timesheetview.DataSource = Timest;
+                Timesheetview.DataBind();
+
+            }
 
             
-            SqlCommand cmd = new SqlCommand("update Timesheets set Status =@approve where Date=@date and UserName=@username ");
-            cmd.Connection = conn;
-            
-            cmd.Parameters.AddWithValue("date", date);
-            cmd.Parameters.AddWithValue("username", username);
-            cmd.Parameters.AddWithValue("approve", "Approved");
-
-            var result = cmd.ExecuteNonQuery();
-
-            Timest = Approve.GetClocktime();
-            Timesheetview.DataSource = Timest;
-            Timesheetview.DataBind();
-
-
-
-
-
-
         }
 
         
@@ -170,7 +203,6 @@ List<Timesheet> Timest = new List<Timesheet>();
         }
 
         
-
     }
 
 }
