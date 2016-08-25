@@ -113,7 +113,55 @@ List<Timesheet> Timest = new List<Timesheet>();
             
         }
 
+
+        protected void Editing(object sender, GridViewEditEventArgs e)
+        {
+           // Timesheetview.EditIndex = e.NewEditIndex;
+            
+        }
+
+        protected void Updating(object sender, GridViewUpdateEventArgs e)
+        {
+            string username, date, edit;
+
+            GridViewRow row = Timesheetview.Rows[e.RowIndex];
+            username = Convert.ToString(row.Cells[0].Text);
+            date = Convert.ToString(row.Cells[1].Text);
         
+            edit = ((TextBox)(row.Cells[5].Controls[0])).Text;
+
+       
+            SqlConnection conn = new SqlConnection(_connectionString);
+
+            conn.Open();
+
+
+            SqlCommand cmd = new SqlCommand("update Timesheets set Status =@text where Date=@date and UserName=@username ");
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("date", date);
+            cmd.Parameters.AddWithValue("username", username);
+            cmd.Parameters.AddWithValue("text", edit);
+
+            var result = cmd.ExecuteNonQuery();
+
+            Timest = Approve.GetClocktime();
+            Timesheetview.DataSource = Timest;
+            Timesheetview.DataBind();
+
+        }
+
+    
+        protected void CancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            Timest = Approve.GetClocktime();
+            Timesheetview.DataSource = Timest;
+            Timesheetview.DataBind();
+        }
+
+    protected void Deleting(object sender, GridViewDeleteEventArgs e)
+        { }
+
 
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)

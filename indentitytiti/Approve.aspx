@@ -24,28 +24,30 @@
                     <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
                     <WeekendDayStyle BackColor="#FFFFCC" />
                 </asp:Calendar>
-                
-                
-                
+
+
+
                 <br />
 
 
-                <asp:GridView ID="Timesheetview" runat="server" AutoGenerateColumns="False" OnRawCommand="RowCommand"  >
+                <asp:GridView ID="Timesheetview" runat="server" AutoGenerateColumns="False" OnRawCommand="RowCommand" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCancelingEdit="CancelingEdit" OnRowEditing="Editing" OnRowUpdating="Updating" OnRowDeleting="Deleting" >
+
+                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
 
                     <Columns>
                         <asp:BoundField HeaderText="Username" DataField="UserName" ReadOnly="true" />
-                       <asp:BoundField HeaderText="Date" DataField="Date" ReadOnly="true" />
+                        <asp:BoundField HeaderText="Date" DataField="Date" ReadOnly="true" />
                         <asp:BoundField HeaderText="ClockIn" DataField="ClockIn" ReadOnly="true" />
                         <asp:BoundField HeaderText="ClockOut" DataField="ClockOut" ReadOnly="true" />
                         <asp:BoundField HeaderText="Duration" DataField="Duration" ReadOnly="true" />
-                        <asp:BoundField HeaderText="Status" DataField="Status" ReadOnly="true" />
-                        
-                         <asp:TemplateField HeaderText="Comment">
+                        <asp:BoundField HeaderText="Status" DataField="Status"  />
+
+                        <asp:TemplateField HeaderText="Comment">
                             <ItemTemplate>
-                           <asp:TextBox ID="rightdt" runat="server"></asp:TextBox>         
+                                <asp:TextBox ID="rightdt" runat="server"></asp:TextBox>
                             </ItemTemplate>
-                             </asp:TemplateField>
- 
+                        </asp:TemplateField>
+
 
                         <asp:TemplateField HeaderText="Submit">
                             <ItemTemplate>
@@ -53,8 +55,8 @@
                                     Text="Submit"
                                     Visible="true"
                                     CommandName="modify"
-                                    CommandArgument='<%#((GridViewRow) Container).RowIndex %>'/>
-                                 </ItemTemplate>
+                                  CommandArgument='<%#((GridViewRow) Container).RowIndex %>' />
+                            </ItemTemplate>
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Approve">
@@ -63,12 +65,30 @@
                                     Text="Approve"
                                     Visible="true"
                                     CommandName="approve"
-                                    CommandArgument='<%#((GridViewRow) Container).RowIndex %>'/>   
+                                  CommandArgument='<%#((GridViewRow) Container).RowIndex %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
 
 
+                        <asp:CommandField HeaderText="Edit" ShowEditButton="true" />
+                        <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
+
+
+
                     </Columns>
+
+
+
+                    <EditRowStyle BackColor="#999999" />
+                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
 
 
 
