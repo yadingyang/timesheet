@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master"  AutoEventWireup="true" CodeBehind="Approve.aspx.cs" Inherits="indentitytiti.Approve" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Approve.aspx.cs" Inherits="indentitytiti.Approve" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -27,14 +27,29 @@
                 <br />
 
 
-                <asp:GridView ID="Timesheetview" runat="server" AutoGenerateColumns="False">
+                <asp:GridView ID="Timesheetview" runat="server" AutoGenerateColumns="False" OnRawCommand="RowCommand" >
 
                     <Columns>
- <asp:BoundField HeaderText="Username" DataField="UserName" ReadOnly="true" />
-<asp:BoundField HeaderText="ClockIn" DataField="ClockIn" ReadOnly="true" />
- <asp:BoundField HeaderText="ClockOut" DataField="ClockOut" ReadOnly="true" />
-<asp:BoundField HeaderText="Duration" DataField="Duration" ReadOnly="true" />
-<asp:BoundField HeaderText="Status" DataField="Status" ReadOnly="true" />
+                        <asp:BoundField HeaderText="Username" DataField="UserName" ReadOnly="true" />
+                       <asp:BoundField HeaderText="Date" DataField="Date" ReadOnly="true" />
+                        <asp:BoundField HeaderText="ClockIn" DataField="ClockIn" ReadOnly="true" />
+                        <asp:BoundField HeaderText="ClockOut" DataField="ClockOut" ReadOnly="true" />
+                        <asp:BoundField HeaderText="Duration" DataField="Duration" ReadOnly="true" />
+                        <asp:BoundField HeaderText="Status" DataField="Status" ReadOnly="true" />
+                        
+
+                        <asp:TemplateField HeaderText="Approve">
+                            <ItemTemplate>
+
+                                <asp:Button ID="Approve" runat="Server" CausesValidation="false"
+                                    Text="Approve"
+                                    Visible="true"
+                                    CommandArgument='<%#((GridViewRow) Container).RowIndex %>'/>
+                                 
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+
                     </Columns>
 
 

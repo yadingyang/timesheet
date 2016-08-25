@@ -22,6 +22,7 @@ namespace indentitytiti
 
         private static string _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
 
+List<Timesheet> Timest = new List<Timesheet>();
 
         public class Timesheet
         {
@@ -30,6 +31,7 @@ namespace indentitytiti
             public string ClockOut { get; set; }
             public string Duration { get; set; }
             public string Status { get; set; }
+            public string Date { get; set; }
         }
 
 
@@ -38,8 +40,64 @@ namespace indentitytiti
 
             checkuser = Request.QueryString["user"];
 
+            Timesheetview.RowCommand += RowCommand;
 
         }
+
+        private void RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            
+            string username, date;
+           
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = Timesheetview.Rows[index];
+                username = Convert.ToString(row.Cells[0].Text);
+                date = Convert.ToString(row.Cells[1].Text);
+
+
+            SqlConnection conn = new SqlConnection(_connectionString);
+
+            conn.Open();
+
+            
+            SqlCommand cmd = new SqlCommand("update Timesheets set Status =@approve where Date=@date and UserName=@username ");
+            cmd.Connection = conn;
+            
+            cmd.Parameters.AddWithValue("date", date);
+            cmd.Parameters.AddWithValue("username", username);
+            cmd.Parameters.AddWithValue("approve", "Approved");
+
+            var result = cmd.ExecuteNonQuery();
+
+            //Timesheetview.DataSource = Timest;
+            //Timesheetview.DataBind();
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
@@ -48,7 +106,7 @@ namespace indentitytiti
 
             dat = Calendar1.SelectedDate.ToString("MM/dd/yyyy");
 
-            List<Timesheet> Timest = new List<Timesheet>();
+           
 
             Timest = Approve.GetClocktime();
 
@@ -71,7 +129,7 @@ namespace indentitytiti
             var username = System.Web.HttpContext.Current.User.Identity.GetUserName();
 
 
-            string cd = "select ClockIn ,ClockOut, Status from [Timesheets] where [Date]=@value1 and [Username]=@value2";
+            string cd = "select ClockIn ,ClockOut, Status,Date from [Timesheets] where [Date]=@value1 and [Username]=@value2";
 
             SqlCommand cdsearch = new SqlCommand(cd, conn);
 
@@ -88,10 +146,11 @@ namespace indentitytiti
 
             if (result.Read())
             {
-
+               
                 tmst.ClockIn = result["ClockIn"].ToString();
                 tmst.ClockOut = result["ClockOut"].ToString();
                 tmst.Status = result["Status"].ToString();
+                tmst.Date = result["Date"].ToString();
             }
 
 
@@ -99,6 +158,7 @@ namespace indentitytiti
             if (HttpContext.Current.User.IsInRole("Leader"))
             {
                 tmst.UserName = checkuser;
+                
             }
             else
             {
@@ -125,6 +185,8 @@ namespace indentitytiti
 
             return Timest;
         }
+
+        
 
     }
 
