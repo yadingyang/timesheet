@@ -69,8 +69,9 @@ List<Timesheet> Timest = new List<Timesheet>();
 
             var result = cmd.ExecuteNonQuery();
 
-            //Timesheetview.DataSource = Timest;
-            //Timesheetview.DataBind();
+            Timest = Approve.GetClocktime();
+            Timesheetview.DataSource = Timest;
+            Timesheetview.DataBind();
 
 
 
@@ -79,25 +80,7 @@ List<Timesheet> Timest = new List<Timesheet>();
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+        
 
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
