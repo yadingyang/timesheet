@@ -22,7 +22,7 @@ namespace indentitytiti
 
         private static string _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
 
-List<Timesheet> Timest = new List<Timesheet>();
+        List<Timesheet> Timest = new List<Timesheet>();
 
         public class Timesheet
         {
@@ -55,7 +55,7 @@ List<Timesheet> Timest = new List<Timesheet>();
                 username = Convert.ToString(row.Cells[0].Text);
                 date = Convert.ToString(row.Cells[1].Text);
 
-              
+
 
                 SqlConnection conn = new SqlConnection(_connectionString);
 
@@ -110,14 +110,17 @@ List<Timesheet> Timest = new List<Timesheet>();
 
             }
 
-            
+
         }
 
 
         protected void Editing(object sender, GridViewEditEventArgs e)
         {
-           // Timesheetview.EditIndex = e.NewEditIndex;
-            
+            Timesheetview.EditIndex = e.NewEditIndex;
+            Timest = Approve.GetClocktime();
+            Timesheetview.DataSource = Timest;
+            Timesheetview.DataBind();
+
         }
 
         protected void Updating(object sender, GridViewUpdateEventArgs e)
@@ -127,10 +130,10 @@ List<Timesheet> Timest = new List<Timesheet>();
             GridViewRow row = Timesheetview.Rows[e.RowIndex];
             username = Convert.ToString(row.Cells[0].Text);
             date = Convert.ToString(row.Cells[1].Text);
-        
+
             edit = ((TextBox)(row.Cells[5].Controls[0])).Text;
 
-       
+
             SqlConnection conn = new SqlConnection(_connectionString);
 
             conn.Open();
@@ -145,22 +148,58 @@ List<Timesheet> Timest = new List<Timesheet>();
 
             var result = cmd.ExecuteNonQuery();
 
+            Timesheetview.EditIndex = -1;
+
             Timest = Approve.GetClocktime();
             Timesheetview.DataSource = Timest;
             Timesheetview.DataBind();
 
         }
 
-    
+
         protected void CancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
+            Timesheetview.EditIndex = -1;
             Timest = Approve.GetClocktime();
             Timesheetview.DataSource = Timest;
             Timesheetview.DataBind();
         }
 
-    protected void Deleting(object sender, GridViewDeleteEventArgs e)
-        { }
+        protected void Deleting(object sender, GridViewDeleteEventArgs e)
+        {
+            GridViewRow row = Timesheetview.Rows[e.RowIndex];
+
+            string username = Convert.ToString(row.Cells[0].Text);
+
+           string date = Convert.ToString(row.Cells[1].Text);
+
+            SqlConnection conn = new SqlConnection(_connectionString);
+
+            conn.Open();
+
+           
+            SqlCommand cmd = new SqlCommand(" delete from Timesheets where Date=@date and  UserName = @username ");
+
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("date", date);
+            cmd.Parameters.AddWithValue("username", username);
+           
+
+            var result = cmd.ExecuteNonQuery();
+
+            Timesheetview.EditIndex = -1;
+
+            Timest = Approve.GetClocktime();
+            Timesheetview.DataSource = Timest;
+            Timesheetview.DataBind();
+
+
+
+
+
+
+        }
 
 
 
@@ -170,7 +209,7 @@ List<Timesheet> Timest = new List<Timesheet>();
 
             dat = Calendar1.SelectedDate.ToString("MM/dd/yyyy");
 
-           
+
 
             Timest = Approve.GetClocktime();
 
@@ -200,9 +239,9 @@ List<Timesheet> Timest = new List<Timesheet>();
             cdsearch.Parameters.AddWithValue("@value1", dat);
 
 
-           
+
             cdsearch.Parameters.AddWithValue("@value2", checkuser);
-            
+
 
             SqlDataReader result = cdsearch.ExecuteReader();
 
@@ -210,7 +249,7 @@ List<Timesheet> Timest = new List<Timesheet>();
 
             if (result.Read())
             {
-               
+
                 tmst.ClockIn = result["ClockIn"].ToString();
                 tmst.ClockOut = result["ClockOut"].ToString();
                 tmst.Status = result["Status"].ToString();
@@ -222,7 +261,7 @@ List<Timesheet> Timest = new List<Timesheet>();
             if (HttpContext.Current.User.IsInRole("Leader"))
             {
                 tmst.UserName = checkuser;
-                
+
             }
             else
             {
@@ -250,7 +289,7 @@ List<Timesheet> Timest = new List<Timesheet>();
             return Timest;
         }
 
-        
+
     }
 
 }
