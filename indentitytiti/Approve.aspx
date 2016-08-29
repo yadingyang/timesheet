@@ -62,7 +62,7 @@
                         <asp:TemplateField HeaderText="Approve">
                             <ItemTemplate>
                                 <asp:Button ID="Approve" runat="Server" CausesValidation="false"
-                                    Text="Approve"
+                                    Text="Approved"
                                     Visible="true"
                                     CommandName="approve"
                                   CommandArgument='<%#((GridViewRow) Container).RowIndex %>' />

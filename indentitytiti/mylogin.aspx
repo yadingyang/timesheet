@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <Div id="loginbox">
+    <Div id="loginbox" class="form-group">
    
     <h3   >Please Login</h3>
     <p   >
@@ -11,15 +11,37 @@
     <h3   >
         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </h3>
-  <p>       <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+  <p>       <asp:TextBox ID="TextBox1" runat="server" ></asp:TextBox>
         </p>
     <p>       
-        <asp:TextBox ID="TextBox2" TextMode="Password" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox2" TextMode="Password" runat="server" ></asp:TextBox>
         </p>
     <p>       
         <asp:Button ID="Login" runat="server" OnClick="Button1_Click" Text="Login" class="btn" ForeColor="#666666" />
-        &nbsp;</p>
+        &nbsp;
+        
+        </p>
  </Div>
+
+
+      
+    </div>
+      
+    </div>
+
+
+    <!-- Set height and width with CSS -->
+<div id="googleMap" style="height:400px;width:100%;"></div>
+
+<!-- Add Google Maps -->
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+
+
+
+
+
 
     
     </asp:Content>
