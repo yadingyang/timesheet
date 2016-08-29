@@ -30,14 +30,7 @@
     </div>
 
 
-    <!-- Set height and width with CSS -->
-<div id="googleMap" style="height:400px;width:100%;"></div>
-
-<!-- Add Google Maps -->
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-<script>
-var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-
+ 
 
 
 
