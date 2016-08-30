@@ -16,6 +16,7 @@
             background-color: #cccccc;
             color: #016191;
             padding: 165px 25px;
+             font-family: Montserrat, sans-serif;
         }
 
         #username, #password {

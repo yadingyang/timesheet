@@ -12,9 +12,22 @@ using System.Data.SqlClient;
 
 namespace indentitytiti
 {
+    public class Timesheet
+    {
+        public string UserName { get; set; }
+        public string ClockIn { get; set; }
+        public string ClockOut { get; set; }
+        public string Duration { get; set; }
+        public string Status { get; set; }
+    }
+
     public partial class stuff : System.Web.UI.Page
     {
-   
+        static string dat;
+
+        static string checkuser;
+       
+
         private static string _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
         
         protected void Page_Load(object sender, EventArgs e)
@@ -46,64 +59,34 @@ namespace indentitytiti
                 cit = result["ClockIn"].ToString();
                 cot = result["ClockOut"].ToString();
 
-                if (cit==null)
-                {       ClockIn.Enabled = true                    ;
-                     ClockOut.Enabled = false;
-                      Label1.Text = "Please Login";}
+                if (cit == null)
+                {
+                    clockin.Enabled = true;
+                   
+                    clockout.CssClass = "btn btn-primary disabled";
 
-                else if(cit!=null & cot==null | cit != null & cot == "")
-                { ClockIn.Enabled = false;
-                     ClockOut.Enabled = true;
-                    Label1.Text = "You have clocked in today";
+                    instruction.Text = "Please Login";
                 }
 
-                else if (cit!=null & cot!="")
-                { ClockIn.Enabled = false;
-                        ClockOut.Enabled = false;
-                    Label1.Text = "You have clocked in and out today";
+                else if (cit != null & cot == null | cit != null & cot == "")
+                {
+                  
+                    clockin.CssClass = "btn btn-primary disabled";
+                    clockout.Enabled = true;
+                    instruction.Text = "You have clocked in today";
+                }
+
+                else if (cit != null & cot != "")
+                {          
+                    clockin.CssClass = "btn btn-primary disabled";
+                    clockout.CssClass = "btn btn-primary disabled";
+                    instruction.Text = "You have clocked in and out today";
                 }
 
 
-                }
+            }
 
-
-
-
-                //        string cd = "select count(*) from [Timesheets] where [Date]=@value1 and [Username]=@value2";
-
-                //SqlCommand cdsearch = new SqlCommand(cd, conn);
-                //cdsearch.Parameters.AddWithValue("@value1", dat);
-                //cdsearch.Parameters.AddWithValue("@value2", username);
-
-
-                //object result = cdsearch.ExecuteScalar();
-
-                //int count = Convert.ToInt32(result);
-
-                // if (count ==1)
-                // { ClockIn.Enabled = false;
-                //    ClockOut.Enabled = true;
-                //     Label1.Text = "You have clocked in today";
-                // }
-
-                // else if (count ==2)
-                // {
-                //     ClockIn.Enabled = false;
-                //     ClockOut.Enabled = false;
-                //     Label1.Text = "You have clocked in and out today";
-                // }
-
-                //if (count==null)
-                // {
-                //     ClockIn.Enabled = true                    ;
-                //     ClockOut.Enabled = false;
-                //     Label1.Text = "Please Login";
-                // }
-
-
-
-
-
+            
 
 
 
@@ -117,14 +100,14 @@ namespace indentitytiti
             }
 
 
-            string url= "timesheets.aspx?user="+System.Web.HttpContext.Current.User.Identity.GetUserName();
-            HyperLink1.NavigateUrl = url;
+            //string url= "timesheets.aspx?user="+System.Web.HttpContext.Current.User.Identity.GetUserName();
+            //HyperLink1.NavigateUrl = url;
 
-          Label2.Text = "Welcome:" + System.Web.HttpContext.Current.User.Identity.GetUserName();
-
-
+         welcome.Text = "Welcome:" + System.Web.HttpContext.Current.User.Identity.GetUserName();
 
 
+
+ checkuser = Request.QueryString["user"];
 
         }
 
@@ -213,9 +196,111 @@ namespace indentitytiti
             Response.Redirect("stuff.aspx");
         }
 
-   
+
+        protected void logout(object sender, EventArgs e)
+        {
+            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+            authenticationManager.SignOut();
+
+            Response.Redirect("mylogin.aspx");
+        }
+
+       
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+
+
+            dat = Calendar1.SelectedDate.ToString("MM/dd/yyyy");
+
+            List<Timesheet> Timest = new List<Timesheet>();
+
+            Timest = stuff.GetClocktime();
+
+            Timesheetview.DataSource = Timest;
+
+            Timesheetview.DataBind();
+
+
+        }
 
         
+
+
+
+        public static List<Timesheet> GetClocktime()
+        {
+            List<Timesheet> Timest = new List<Timesheet>();
+
+            SqlConnection conn = new SqlConnection(_connectionString);
+
+            conn.Open();
+
+            var username = System.Web.HttpContext.Current.User.Identity.GetUserName();
+
+
+            string cd = "select ClockIn ,ClockOut, Status from [Timesheets] where [Date]=@value1 and [Username]=@value2";
+
+            SqlCommand cdsearch = new SqlCommand(cd, conn);
+
+            cdsearch.Parameters.AddWithValue("@value1", dat);
+
+
+            if (HttpContext.Current.User.IsInRole("Leader"))
+            {
+                cdsearch.Parameters.AddWithValue("@value2", checkuser);
+            }
+            else
+            {
+                cdsearch.Parameters.AddWithValue("@value2", username);
+            }
+
+            SqlDataReader result = cdsearch.ExecuteReader();
+
+            Timesheet tmst = new Timesheet();
+
+            if (result.Read())
+            {
+
+                tmst.ClockIn = result["ClockIn"].ToString();
+                tmst.ClockOut = result["ClockOut"].ToString();
+                tmst.Status = result["Status"].ToString();
+            }
+
+
+
+            if (HttpContext.Current.User.IsInRole("Leader"))
+            {
+                tmst.UserName = checkuser;
+            }
+            else
+            {
+                tmst.UserName = username;
+            }
+
+
+
+
+            if (tmst.ClockIn != "" & tmst.ClockOut != "")
+            {
+                DateTime ci = Convert.ToDateTime(tmst.ClockIn);
+                DateTime co = Convert.ToDateTime(tmst.ClockOut);
+
+
+                TimeSpan Du = co - ci;
+                tmst.Duration = Du.ToString();
+            }
+            else
+            { tmst.Duration = "0"; }
+
+
+            Timest.Add(tmst);
+
+            return Timest;
+        }
+
+      
+
 
 
 
