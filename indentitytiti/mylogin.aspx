@@ -19,7 +19,7 @@
         }
 
         #username, #password {
-            margin-left: 33%;
+            margin-left: 35%;
         }
 
         .ad-pd {
@@ -39,9 +39,9 @@
 
                 <asp:Label class="text-danger" ID="Label1" runat="server" Text=""></asp:Label>
 
-                <asp:TextBox class="form-control" Width="400px" placeholder="Enter Username" ID="username" runat="server"></asp:TextBox>
+                <asp:TextBox class="form-control" Width="30%" placeholder="Enter Username" ID="username" runat="server"></asp:TextBox>
 
-                <asp:TextBox class="form-control" Width="400px" placeholder="Enter password" ID="password" TextMode="Password" runat="server"></asp:TextBox>
+                <asp:TextBox class="form-control" Width="30%" placeholder="Enter password" ID="password" TextMode="Password" runat="server"></asp:TextBox>
 
                 <asp:Button ID="Button1" class="btn ad-pd" runat="server" OnClick="Button1_Click" Text="Login" ForeColor="#cccccc" BackColor="#016191" />
 
