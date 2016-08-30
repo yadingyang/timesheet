@@ -30,7 +30,7 @@ namespace indentitytiti
 
             var userStore = new UserStore<IdentityUser>();
             var userManager = new UserManager<IdentityUser>(userStore);
-            var user = userManager.Find(TextBox1.Text, TextBox2.Text);
+            var user = userManager.Find(username.Text, password.Text);
             if (user != null)
             {
                 var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
