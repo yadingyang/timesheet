@@ -62,6 +62,8 @@ namespace indentitytiti
                 if (cit == null)
                 {
                     clockin.Enabled = true;
+
+                    clockout.Enabled = false;
                    
                     clockout.CssClass = "btn btn-primary disabled";
 
@@ -70,14 +72,16 @@ namespace indentitytiti
 
                 else if (cit != null & cot == null | cit != null & cot == "")
                 {
-                  
+                    clockin.Enabled = false;
                     clockin.CssClass = "btn btn-primary disabled";
                     clockout.Enabled = true;
                     instruction.Text = "You have clocked in today";
                 }
 
                 else if (cit != null & cot != "")
-                {          
+                {
+                    clockout.Enabled = false;
+                    clockin.Enabled = false;
                     clockin.CssClass = "btn btn-primary disabled";
                     clockout.CssClass = "btn btn-primary disabled";
                     instruction.Text = "You have clocked in and out today";
