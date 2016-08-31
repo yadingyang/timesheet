@@ -217,6 +217,12 @@ namespace indentitytiti
 
             dat = Calendar1.SelectedDate.ToString("MM/dd/yyyy");
 
+            DateTime selday = Calendar1.SelectedDate;
+
+            DateTime smonday = selday.AddDays(-(int)selday.DayOfWeek + 1);
+
+            DateTime ssunday = selday.AddDays(-(int)selday.DayOfWeek + 7);
+
             List<Timesheet> Timest = new List<Timesheet>();
 
             Timest = stuff.GetClocktime();
@@ -224,6 +230,7 @@ namespace indentitytiti
             Timesheetview.DataSource = Timest;
 
             Timesheetview.DataBind();
+
 
 
         }

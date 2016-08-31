@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+     
     <title>Bootstrap Theme Company Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,9 +88,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://www.bill-jc.com/">Bill-JC Technology<asp:ScriptManager ID="ScriptManager1" runat="server">
-                    </asp:ScriptManager>
-                    </a>
+                    <a class="navbar-brand" href="http://www.bill-jc.com/">Bill-JC Technology </a>
+
+                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                  
+
                     &nbsp;
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
@@ -135,7 +137,7 @@
                             <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                             <NextPrevStyle VerticalAlign="Bottom" Font-Bold="True" Font-Size="8pt" ForeColor="#cccccc" />
                             <OtherMonthDayStyle ForeColor="#cccccc" />
-                            <SelectedDayStyle BackColor="#cccccc" ForeColor="#016191" />
+                                <SelectedDayStyle BackColor="#ccccc" ForeColor="#016191" />                     
                             <TitleStyle BackColor="#016191" BorderColor="#016191" Font-Bold="True" BorderWidth="4px" Font-Size="12pt" ForeColor="#cccccc" />
                             <TodayDayStyle BackColor="#016191" />
                         </asp:Calendar>
